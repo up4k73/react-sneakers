@@ -20,7 +20,7 @@ function App() {
                   backgroundImage: "url(/img/sneakers/sn.webp)",
                 }}
               ></div>
-              <div className="mr-30">
+              <div className="mr-20">
                 <p className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
                 <b>8 499 руб.</b>
               </div>
