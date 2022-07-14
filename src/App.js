@@ -7,7 +7,7 @@ function App() {
     <div className="wrapper clear">
       <div style={{ display: "none" }} className="overlay">
         <div className="drawer">
-          <h2 className="mb-30 mr-10 ml-10 d-flex justify-between">
+          <h2 className="mb-40 mr-10 ml-10 d-flex justify-between">
             Корзина{" "}
             <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
           </h2>
