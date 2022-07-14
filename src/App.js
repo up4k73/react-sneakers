@@ -13,7 +13,7 @@ function App() {
           </h2>
           <h1>{5 + 5}</h1>
           <div className="items">
-            <div className="cartItem d-flex align-center mb-20">
+            <div className="cartitem d-flex align-center mb-20">
               <div
                 className="cartItemImg"
                 style={{
