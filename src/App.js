@@ -6,23 +6,28 @@ import Drawer from "./components/Drawer";
 const arr = [
   {
     name: "Мужские Кроссовки Nike Blazer Mid Suede",
-    price: "12999 руб.",
+    price: "5600 руб.",
+    img: "/img/sneakers/sneak (1).svg",
   },
   {
-    name: "Кроссовки adidas",
-    price: "18999 руб.",
+    name: "Кроссовки Adidas хещельме бещельме",
+    price: "7600 руб.",
+    img: "/img/sneakers/sneak (2).svg",
   },
   {
     name: "Кроссовки Puma X Aka Boku Future Rider",
-    price: "20999 руб.",
+    price: "5789 руб.",
+    img: "/img/sneakers/sneak (3).svg",
   },
   {
     name: "Мужские Кроссовки Nike Kyrie Flytrap IV",
-    price: "28999 руб.",
+    price: "13800 руб.",
+    img: "/img/sneakers/sneak(4).svg",
   },
   {
     name: "Мужские Кроссовки Nike LeBron XVIII",
-    price: "38999 руб.",
+    price: "7655 руб.",
+    img: "/img/sneakers/sneak (5).svg",
   },
 ];
 
@@ -33,22 +38,11 @@ function App() {
       <Header />
       <div className="content p-40">
         <Search />
-        <div className="d-flex justify-center flex-wrap">
-          {arr.map(
-            (
-              val // При помощи метода arr.map из массива вытаскиваются объекты и заменяются на единицу
-            ) => (
-              <b>1</b>
-            )
-          )}
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+        {/* // При помощи метода arr.map из массива вытаскиваются объекты и заменяются на единицу */}
+        <div className="d-flex justify-between flex-wrap">
+          {arr.map((obj) => (
+            <Card title={obj.name} price={obj.price} imageUrl={obj.img} />
+          ))}
         </div>
       </div>
     </div>
