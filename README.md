@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Мой первый проект на реакт по урокам https://www.youtube.com/watch?v=8W-M96dXA3Y&list=PL0FGkDGJQjJEos_0yVkbKjsQ9zGVy3dG7&index=3
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
