@@ -1,6 +1,7 @@
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Search from "./components/Search";
+import Cartitem from "./components/Cartitem";
 
 function App() {
   return (
@@ -13,23 +14,26 @@ function App() {
           </h2>
           <h1>{5 + 5}</h1>
           <div className="items">
-            <div className="cartItem d-flex align-center mb-20">
-              <div
-                className="cartItemImg"
-                style={{
-                  backgroundImage: "url(/img/sneakers/sn.webp)",
-                }}
-              ></div>
-              <div className="mr-20">
-                <p className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
-                <b>8 499 руб.</b>
-              </div>
-              <img
-                className="removeBtn"
-                src="/img/btn-remove.svg"
-                alt="Remove"
-              />
-            </div>
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+            <Cartitem />
+
             <div className="cartItem d-flex align-center mb-20">
               <div
                 className="cartItemImg"
