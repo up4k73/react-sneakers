@@ -10,7 +10,7 @@ function App() {
       <Header />
       <div className="content p-40">
         <Search />
-        <div className="d-flex flex-wrap">
+        <div className="d-fle flex-wrap">
           <Card />
           <Card />
           <Card />
