@@ -3,7 +3,7 @@ import Cartitem from "./Cartitem";
 
 export default function Drawer() {
   return (
-    <div style={{ display: "box" }} className="overlay">
+    <div style={{ display: "none" }} className="overlay">
       <div className="drawer">
         <h2 className="mb-40 mr-10 ml-10 d-flex justify-between">
           Корзина{" "}
