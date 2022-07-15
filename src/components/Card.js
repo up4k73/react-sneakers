@@ -10,7 +10,7 @@ export default function Card(props) {
       <h5>{props.title}</h5>
       <div className="d-flex justify-between align-center">
         <div className="d-flex flex-column">
-          <span>Стоимость:</span>
+          <span>Цена:</span>
           <b>{props.price}</b>
         </div>
         <button className="button">
