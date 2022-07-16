@@ -2,6 +2,7 @@ import Card from "./components/Card";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Drawer from "./components/Drawer";
+import SomethingToTest from "./components/SomethingToTest";
 
 const arr = [
   {
@@ -44,6 +45,8 @@ function App() {
             <Card title={obj.title} price={obj.price} imageUrl={obj.img} />
           ))}
         </div>
+        <SomethingToTest />
+        
       </div>
     </div>
   );
