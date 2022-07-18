@@ -1,4 +1,4 @@
-import Card from "./components/Card";
+import Card from "./components/Card/Card";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Drawer from "./components/Drawer";
@@ -47,7 +47,12 @@ function App() {
         {/* // При помощи метода arr.map из массива вытаскиваются объекты и заменяются на единицу */}
         <div className="d-flex justify-between flex-wrap">
           {arr.map((obj) => (
-            <Card title={obj.title} price={obj.price} imageUrl={obj.img} />
+            <Card
+              title={obj.title}
+              price={obj.price}
+              imageUrl={obj.img}
+              onClick={() => console.log(obj)}
+            />
           ))}
         </div>
         <SomethingToTest />

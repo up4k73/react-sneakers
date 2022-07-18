@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function Card(props) {
+  console.log(props);
+
   return (
     <div className="card">
       <div className="favorite">
@@ -13,7 +15,7 @@ export default function Card(props) {
           <span>Цена:</span>
           <b>{props.price}</b>
         </div>
-        <button className="button" onClick={() => alert(props.title)}>
+        <button className="button" onClick={props.onClick}>
           <img width={11} height={11} src="img/plus.svg" alt="Plus" />
         </button>
       </div>
