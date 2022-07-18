@@ -13,7 +13,7 @@ export default function Card(props) {
           <span>Цена:</span>
           <b>{props.price}</b>
         </div>
-        <button className="button">
+        <button className="button" onClick={() => alert(props.title)}>
           <img width={11} height={11} src="img/plus.svg" alt="Plus" />
         </button>
       </div>

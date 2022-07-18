@@ -30,6 +30,11 @@ const arr = [
     price: "7655 руб.",
     img: "/img/sneakers/sneak (5).svg",
   },
+  {
+    title: "Кроссовки Goose Concept LeBron XVIII",
+    price: "17655 руб.",
+    img: "/img/sneakers/sn.webp",
+  },
 ];
 
 function App() {
@@ -46,7 +51,6 @@ function App() {
           ))}
         </div>
         <SomethingToTest />
-        
       </div>
     </div>
   );
