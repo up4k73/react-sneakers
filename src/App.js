@@ -1,8 +1,9 @@
 import Card from "./components/Card/Card";
 import Header from "./components/Header";
 import Search from "./components/Search";
-import Drawer from "./components/Drawer";
+import Drawer from "./components/Drawer/Drawer";
 import SomethingToTest from "./components/SomethingToTest";
+import CommentSection from "./components/CommentSection/CommentSection";
 
 const arr = [
   {
@@ -51,10 +52,11 @@ function App() {
               title={obj.title}
               price={obj.price}
               imageUrl={obj.img}
-              onClick={() => console.log(obj)}
+              onClick={() => console.log(obj.title)}
             />
           ))}
         </div>
+        <CommentSection />
         <SomethingToTest />
       </div>
     </div>

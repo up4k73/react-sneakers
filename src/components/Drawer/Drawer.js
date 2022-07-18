@@ -1,16 +1,17 @@
 import React from "react";
-import Cartitem from "./Cartitem";
+import Cartitem from "../Cartitem";
+import styles from "./Drawer.module.scss";
 
 export default function Drawer() {
   return (
     <div style={{ display: "none" }} className="overlay">
-      <div className="drawer">
+      <div className={styles.drawer}>
         <h2 className="mb-40 mr-10 ml-10 d-flex justify-between">
           Корзина{" "}
           <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
         </h2>
         <h1>{5 + 5}</h1>
-        <div className="items">
+        <div className={styles.items}>
           <Cartitem />
           <Cartitem />
           <Cartitem />

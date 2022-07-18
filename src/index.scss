@@ -86,25 +86,6 @@ h5 {
   z-index: 1;
 }
 
-.drawer {
-  border-radius: 30px 0px 0px 30px;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 420px;
-  height: 100%;
-  right: 0;
-  background: #ffffff;
-  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  h2 {
-    margin: 0;
-  }
-  .items {
-    overflow: auto;
-    margin-bottom: 30px;
-  }
-}
 .cartTotalBlock {
   ul {
     display: block;
@@ -164,7 +145,7 @@ h5 {
   border: 1px solid #f3f3f3;
   border-radius: 20px;
   padding: 10px;
-  overflow: hidden;
+  overflow: auto;
   p {
     font-size: 16px;
     margin: 0;
@@ -192,4 +173,5 @@ h5 {
 
 .items {
   flex: 1;
+  overflow: scroll;
 }

@@ -1,0 +1,32 @@
+.commentsection {
+  position: relative;
+  margin: 25px auto;
+  padding: 15px;
+  width: 56%;
+  min-height: 10px;
+  font-family: sans-serif;
+  background: rgb(188, 207, 216);
+  border: 2px solid rgb(72, 117, 117);
+}
+
+.commentsection:before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 15px;
+  border: 10px solid #fdfcfc;
+  border-bottom: 10px solid rgb(94, 122, 136);
+  border-left: 10px solid rgb(90, 123, 123);
+  z-index: -1;
+}
+
+.commentsection:after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 17px;
+  border: 10px solid hsla(0, 0%, 0%, 0);
+  border-bottom: 10px solid rgb(188, 207, 216);
+  border-left: 10px solid rgb(188, 207, 216);
+  z-index: 1;
+}
