@@ -52,7 +52,8 @@ function App() {
               title={obj.title}
               price={obj.price}
               imageUrl={obj.img}
-              onClick={() => console.log(obj.title)}
+              onPlusClick={() => console.log("Нажатие на плюс")}
+              onFavoriteClick={() => console.log("Нажатие на Favorite")}
             />
           ))}
         </div>

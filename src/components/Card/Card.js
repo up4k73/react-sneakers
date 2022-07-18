@@ -9,7 +9,11 @@ export default function Card(props) {
   return (
     <div className={styles.card}>
       <div className={styles.favorite}>
-        <img src="/img/heart-unliked.svg" alt="Unliked"></img>
+        <img
+          src="/img/heart-unliked.svg"
+          alt="Unliked"
+          onClick={props.onFavoriteClick}
+        ></img>
       </div>
       <img height={112} width={133} src={props.imageUrl} alt="" />
       <h5>{props.title}</h5>
@@ -18,7 +22,7 @@ export default function Card(props) {
           <span>Цена:</span>
           <b>{props.price}</b>
         </div>
-        <button className="button" onClick={props.onClick}>
+        <button className="button" onClick={props.onPlusClick}>
           <img width={11} height={11} src="img/plus.svg" alt="Plus" />
         </button>
       </div>
