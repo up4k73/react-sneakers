@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "./Card.module.scss";
 
-console.log(styles);
-
 export default function Card(props) {
-  console.log(props);
+  const [isAdded, setIsAdded] = React.useState(false);
+  const onClickPlus = () => {
+    setIsAdded(!isAdded);
+  };
+  // console.log(isAdded);
 
   return (
     <div className={styles.card}>
@@ -22,9 +24,13 @@ export default function Card(props) {
           <span>Цена:</span>
           <b>{props.price}</b>
         </div>
-        <button className="button" onClick={props.onPlusClick}>
-          <img width={11} height={11} src="img/plus.svg" alt="Plus" />
-        </button>
+
+        <img
+          className={styles.plus}
+          onClick={onClickPlus}
+          src={isAdded ? "img/checkedbutton.svg" : "img/plus.svg"}
+          alt="Plus"
+        />
       </div>
     </div>
   );

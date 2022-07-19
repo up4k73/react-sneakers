@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function Header() {
+export default function Header(props) {
+  //в пропсы передается функция onClickCart
   return (
     <div>
       <header className="d-flex justify-between align-center p-40">
@@ -12,8 +13,14 @@ export default function Header() {
           </div>
         </div>
         <ul className="d-flex">
-          <li className="mr-30">
-            <img width={18} height={18} src="/img/cart.svg" alt="" />
+          <li className="mr-30 cu-p">
+            <img
+              onClick={props.onClickCart}
+              width={18}
+              height={18}
+              src="/img/cart.svg"
+              alt=""
+            />
             <span>750000 руб.</span>
           </li>
           <li>

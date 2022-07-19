@@ -2,13 +2,19 @@ import React from "react";
 import Cartitem from "../Cartitem";
 import styles from "./Drawer.module.scss";
 
-export default function Drawer() {
+export default function Drawer(props) {
+  //Сюда прилетает функция, которая изменяет значение cartOpened
   return (
-    <div style={{ display: "none" }} className="overlay">
+    <div className="overlay">
       <div className={styles.drawer}>
         <h2 className="mb-40 mr-10 ml-10 d-flex justify-between">
           Корзина{" "}
-          <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
+          <img
+            onClick={props.onCloseCart} //здесь применяется функция, которая изменяет значение cartOpened
+            className="removeBtn cu-p" //при нажатии на корзину cartOpened изменяется на false
+            src="/img/btn-remove.svg"
+            alt="Close"
+          />
         </h2>
         <h1>{5 + 5}</h1>
         <div className={styles.items}>

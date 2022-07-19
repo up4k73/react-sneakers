@@ -1,3 +1,4 @@
+import React from "react";
 import Card from "./components/Card/Card";
 import Header from "./components/Header";
 import Search from "./components/Search";
@@ -39,13 +40,25 @@ const arr = [
 ];
 
 function App() {
+  const [cartOpened, setcartOpened] = React.useState(false);
+
   return (
     <div className="wrapper clear">
-      <Drawer />
-      <Header />
+      {cartOpened ? ( //Если в useState true, тогда рендерить Drawer, если false, тогда ничего не рендерится
+        <Drawer //В Drawer в качестве пропсов передается функция, которая изменяется значение cartOpened
+          onCloseCart={() => {
+            setcartOpened(false);
+          }}
+        />
+      ) : null}
+      <Header
+        onClickCart={() => {
+          setcartOpened(true);
+        }}
+      />
       <div className="content p-40">
         <Search />
-        {/* // При помощи метода arr.map из массива вытаскиваются объекты и заменяются на единицу */}
+
         <div className="d-flex justify-between flex-wrap">
           {arr.map((obj) => (
             <Card
