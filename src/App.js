@@ -3,8 +3,9 @@ import Card from "./components/Card/Card";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Drawer from "./components/Drawer/Drawer";
-import SomethingToTest from "./components/SomethingToTest";
+//import SomethingToTest from "./components/SomethingToTest";
 import CommentSection from "./components/CommentSection/CommentSection";
+import Overlay from "./components/Overlay/Overlay";
 
 const arr = [
   {
@@ -41,19 +42,30 @@ const arr = [
 
 function App() {
   const [cartOpened, setcartOpened] = React.useState(false);
+  const [isCartOpened, setisCartOpened] = React.useState(false); //закрытие|открытие Overlay, нужно будет подумать, как реализовать по-другому. Повторяющиеся действия.
 
   return (
     <div className="wrapper clear">
       {cartOpened ? ( //Если в useState true, тогда рендерить Drawer, если false, тогда ничего не рендерится
-        <Drawer //В Drawer в качестве пропсов передается функция, которая изменяется значение cartOpened
-          onCloseCart={() => {
+        <Drawer //В Drawer в качестве пропсов передается функция, которая изменяет значение cartOpened
+          onClose={() => {
             setcartOpened(false);
+            setisCartOpened(false);
+          }}
+        />
+      ) : null}
+      {isCartOpened ? (
+        <Overlay
+          onOverlay={() => {
+            setcartOpened(false);
+            setisCartOpened(false);
           }}
         />
       ) : null}
       <Header
         onClickCart={() => {
           setcartOpened(true);
+          setisCartOpened(true);
         }}
       />
       <div className="content p-40">
@@ -71,7 +83,7 @@ function App() {
           ))}
         </div>
         <CommentSection />
-        <SomethingToTest />
+        {/* <SomethingToTest /> */}
       </div>
     </div>
   );

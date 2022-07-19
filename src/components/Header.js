@@ -21,7 +21,7 @@ export default function Header(props) {
               src="/img/cart.svg"
               alt=""
             />
-            <span>750000 руб.</span>
+            <span onClick={props.onClickCart}>750000 руб.</span>
           </li>
           <li>
             <img width={18} height={18} src="/img/user.svg" alt="" />
