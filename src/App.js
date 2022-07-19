@@ -7,40 +7,8 @@ import Drawer from "./components/Drawer/Drawer";
 import CommentSection from "./components/CommentSection/CommentSection";
 import Overlay from "./components/Overlay/Overlay";
 
-const arr = [
-  {
-    title: "Мужские Кроссовки Nike Blazer Mid Suede",
-    price: "5600 руб.",
-    img: "/img/sneakers/sneak (1).svg",
-  },
-  {
-    title: "Кроссовки Adidas хещельме бещельме",
-    price: "7600 руб.",
-    img: "/img/sneakers/sneak (2).svg",
-  },
-  {
-    title: "Кроссовки Puma X Aka Boku Future Rider",
-    price: "5789 руб.",
-    img: "/img/sneakers/sneak (3).svg",
-  },
-  {
-    title: "Мужские Кроссовки Nike Kyrie Flytrap IV",
-    price: "13800 руб.",
-    img: "/img/sneakers/sneak(4).svg",
-  },
-  {
-    title: "Мужские Кроссовки Nike LeBron XVIII",
-    price: "7655 руб.",
-    img: "/img/sneakers/sneak (5).svg",
-  },
-  {
-    title: "Кроссовки Goose Concept LeBron XVIII",
-    price: "17655 руб.",
-    img: "/img/sneakers/sn.webp",
-  },
-];
-
 function App() {
+  const [items, setItems] = React.useState([]);
   const [cartOpened, setcartOpened] = React.useState(false);
   const [isCartOpened, setisCartOpened] = React.useState(false); //закрытие|открытие Overlay, нужно будет подумать, как реализовать по-другому. Повторяющиеся действия.
 
@@ -72,7 +40,7 @@ function App() {
         <Search />
 
         <div className="d-flex justify-between flex-wrap">
-          {arr.map((obj) => (
+          {items.map((obj) => (
             <Card
               title={obj.title}
               price={obj.price}
