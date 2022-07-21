@@ -3,9 +3,17 @@ import Cartitem from "../Cartitem";
 import styles from "./Drawer.module.scss";
 
 export default function Drawer(props) {
+  //console.log(props);
+  //const [cartItems, setCartItems] = React.useState([]);
+
+  // const onAddToCard = (obj) => {
+  //   setCartItems([...cartItems, obj]);
+  // };
+  //console.log(cartItems);
   //Сюда прилетает функция, которая изменяет значение cartOpened
   return (
     <div className={styles.drawer}>
+      {/* {console.log(props)}; */}
       <h2 className="mb-40 mr-10 ml-10 d-flex justify-between">
         Корзина{" "}
         <img
@@ -17,56 +25,14 @@ export default function Drawer(props) {
       </h2>
       <h1>{5 + 5}</h1>
       <div className={styles.items}>
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
-        <Cartitem />
+        {props.itemsForCart.map((obj) => (
+          <Cartitem
+            title={obj.title}
+            imageUrl={obj.imageUrl}
+            price={obj.price}
+          />
+        ))}
       </div>
-
       <div className="cartTotalBlock">
         <ul>
           <li>

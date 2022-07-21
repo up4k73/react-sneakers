@@ -1,17 +1,22 @@
 import React from "react";
 
-export default function Cartitem() {
+export default function Cartitem(props) {
+  console.log(props);
   return (
     <div className="cartItem d-flex align-center mb-20">
       <div
         className="cartItemImg"
         style={{
-          backgroundImage: "url(/img/sneakers/sn.webp)",
+          backgroundImage: `url(${props.imageUrl})`,
+          // backgroundImage: `url:${props.img}`,
         }}
       ></div>
+      {/* console.log(`url(${props.imageUrl})`); */}
       <div className="mr-20">
-        <p className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
-        <b>8 499 руб.</b>
+        {/* <img src={props.img}></img> */}
+        <p className="mb-5">{props.title}</p>
+        <b>{props.price} руб.</b>
+        {/* //console.log({props.price}); */}
       </div>
       <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
     </div>
