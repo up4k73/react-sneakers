@@ -9,13 +9,25 @@ import Overlay from "./components/Overlay/Overlay";
 
 function App() {
   const [items, setItems] = React.useState([]);
+  const [searchValue, setSearchValue] = React.useState("");
   const [cartItems, setCartItems] = React.useState([]);
-  const [cartOpened, setcartOpened] = React.useState(false);
-  console.log(cartItems);
 
+  const [cartOpened, setcartOpened] = React.useState(false);
+  //console.log(cartItems);
+
+  const onChangeSearchInput = (event) => {
+    setSearchValue(event.target.value);
+  };
+  // const clearSearch = () => {
+  //   setSearchValue("");
+  // };
   const onAddToCard = (obj) => {
     setCartItems([...cartItems, obj]);
   };
+  // const onDeleteFromCart = (obj) => {
+  //   setCartItems(cartItems.filter((obj) => obj !== cartItems));
+  // };
+
   //console.log(cartItems);
 
   //const [isCartOpened, setisCartOpened] = React.useState(false); //закрытие|открытие Overlay, нужно будет подумать, как реализовать по-другому. Повторяющиеся действия.
@@ -31,7 +43,9 @@ function App() {
   return (
     <div className="wrapper clear">
       {cartOpened ? ( //Если в useState true, тогда рендерить Drawer, если false, тогда ничего не рендерится
-        <Drawer //В компонент дравер, передается массив CartItems, далее описание в Дравер
+        <Drawer
+          //В компонент дравер, передается массив CartItems, далее описание в Дравер
+          //delete={onDeleteFromCart}
           itemsForCart={cartItems} //В Drawer в качестве пропсов передается функция, которая изменяет значение cartOpened
           onClose={() => {
             setcartOpened(false);
@@ -54,11 +68,17 @@ function App() {
         }}
       />
       <div className="content p-40">
-        <Search />
+        <Search
+          searchValue={searchValue}
+          searchEvent={onChangeSearchInput}
+          setSearchValue={setSearchValue}
+          //clearSearch={clearSearch}
+        />
 
         <div className="d-flex justify-between flex-wrap">
           {items.map((item) => (
             <Card
+              key={item.title}
               title={item.title}
               price={item.price}
               imageUrl={item.img}

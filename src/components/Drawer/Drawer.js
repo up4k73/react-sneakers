@@ -4,6 +4,10 @@ import styles from "./Drawer.module.scss";
 
 export default function Drawer(props) {
   //console.log(props);
+  // const onRemoveFromCartClick = () => {
+  //   console.log("asd");
+  // };
+  //console.log(props);
   //const [cartItems, setCartItems] = React.useState([]);
 
   // const onAddToCard = (obj) => {
@@ -27,6 +31,8 @@ export default function Drawer(props) {
       <div className={styles.items}>
         {props.itemsForCart.map((obj) => (
           <Cartitem
+            key={obj.title}
+            remove={props.delete}
             title={obj.title}
             imageUrl={obj.imageUrl}
             price={obj.price}

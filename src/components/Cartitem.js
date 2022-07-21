@@ -1,7 +1,8 @@
 import React from "react";
 
 export default function Cartitem(props) {
-  console.log(props);
+  // console.log(props);
+
   return (
     <div className="cartItem d-flex align-center mb-20">
       <div
@@ -18,7 +19,12 @@ export default function Cartitem(props) {
         <b>{props.price} руб.</b>
         {/* //console.log({props.price}); */}
       </div>
-      <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
+      <img
+        onClick={props.remove}
+        className="removeBtn"
+        src="/img/btn-remove.svg"
+        alt="Remove"
+      />
     </div>
   );
 }
