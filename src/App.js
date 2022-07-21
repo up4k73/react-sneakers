@@ -9,7 +9,7 @@ import CommentSection from "./components/CommentSection/CommentSection";
 import Overlay from "./components/Overlay/Overlay";
 
 function App() {
-  const [items, setItems] = React.useState([]);
+  const [items, setItems] = React.useState([]); //сюда передаются данные от сервера из axios, далее изменяются items и передаются в компонент <Card />
   const [searchValue, setSearchValue] = React.useState("");
   const [cartItems, setCartItems] = React.useState([]);
 
@@ -33,7 +33,7 @@ function App() {
 
   //const [isCartOpened, setisCartOpened] = React.useState(false); //закрытие|открытие Overlay, нужно будет подумать, как реализовать по-другому. Повторяющиеся действия.
   React.useEffect(() => {
-    axios
+    axios //умная библиотека, которая сама распознает тип данных (отправляю запрос, потом через стрелочную функцию передаю результат в setItems, который в свою очередь изменяет стейт в items, реакт понимает, что состояние изменилось и рендерит данные, которые пришли от сервера)
       .get("https://62d68bb849c87ff2af269c1b.mockapi.io/items")
       .then((res) => {
         setItems(res.data);
@@ -75,7 +75,10 @@ function App() {
         />
 
         <div className="d-flex justify-between flex-wrap">
-          {items
+          {items //после того, как реакт понял, что данные изменились, он рендерит их в указанном объекте <Card
+            //далее применяется фильтр, который на вход получает данные (item), приводит их к нижнему регистру
+            //далее, все, что включает в себя searchValue, в нижнем регистре передается в Card через метод map
+            //searchValue
             .filter((item) =>
               item.title.toLowerCase().includes(searchValue.toLowerCase())
             )
