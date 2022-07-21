@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Card from "./components/Card/Card";
 import Header from "./components/Header";
 import Search from "./components/Search";
@@ -32,12 +33,10 @@ function App() {
 
   //const [isCartOpened, setisCartOpened] = React.useState(false); //закрытие|открытие Overlay, нужно будет подумать, как реализовать по-другому. Повторяющиеся действия.
   React.useEffect(() => {
-    fetch("https://62d68bb849c87ff2af269c1b.mockapi.io/items")
+    axios
+      .get("https://62d68bb849c87ff2af269c1b.mockapi.io/items")
       .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setItems(res);
+        setItems(res.data);
       });
   }, []);
   return (
@@ -76,16 +75,20 @@ function App() {
         />
 
         <div className="d-flex justify-between flex-wrap">
-          {items.map((item) => (
-            <Card
-              key={item.title}
-              title={item.title}
-              price={item.price}
-              imageUrl={item.img}
-              onPlusClick={(obj) => onAddToCard(obj)}
-              onFavoriteClick={() => console.log("Нажатие на Favorite")}
-            />
-          ))}
+          {items
+            .filter((item) =>
+              item.title.toLowerCase().includes(searchValue.toLowerCase())
+            )
+            .map((item) => (
+              <Card
+                key={item.title}
+                title={item.title}
+                price={item.price}
+                imageUrl={item.img}
+                onPlusClick={(obj) => onAddToCard(obj)}
+                onFavoriteClick={() => console.log("Нажатие на Favorite")}
+              />
+            ))}
         </div>
         <CommentSection />
         {/* <SomethingToTest /> */}
