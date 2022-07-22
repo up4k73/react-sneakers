@@ -3,7 +3,11 @@ import Cartitem from "../Cartitem";
 import styles from "./Drawer.module.scss";
 
 export default function Drawer(props) {
-  //console.log(props);
+  console.log(props);
+  // const itemsForCartSrv = (obj) => {
+  //   axios.get()
+  // }
+  // //console.log(props);
   // const onRemoveFromCartClick = () => {
   //   console.log("asd");
   // };
@@ -17,7 +21,6 @@ export default function Drawer(props) {
   //Сюда прилетает функция, которая изменяет значение cartOpened
   return (
     <div className={styles.drawer}>
-      {/* {console.log(props)}; */}
       <h2 className="mb-40 mr-10 ml-10 d-flex justify-between">
         Корзина{" "}
         <img
@@ -31,14 +34,17 @@ export default function Drawer(props) {
       <div className={styles.items}>
         {props.itemsForCart.map((obj) => (
           <Cartitem
+            id={obj.id}
             key={obj.title}
             remove={props.delete}
             title={obj.title}
             imageUrl={obj.imageUrl}
             price={obj.price}
+
           />
         ))}
       </div>
+
       <div className="cartTotalBlock">
         <ul>
           <li>

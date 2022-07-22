@@ -8,6 +8,8 @@ export default function Card({
   price,
   title,
 }) {
+
+  const [isFavorite, setIsFavorite] = React.useState(false)
   const [isAdded, setIsAdded] = React.useState(false);
   const onClickPlus = () => {
     onPlusClick({ imageUrl, price, title });
@@ -19,9 +21,9 @@ export default function Card({
     <div className={styles.card}>
       <div className={styles.favorite}>
         <img
-          src="/img/heart-unliked.svg"
+          src={isFavorite ? "/img/likedHeart.svg" : "/img/heart-unliked.svg"}
           alt="Unliked"
-          onClick={onFavoriteClick}
+          onClick={() => { setIsFavorite(!isFavorite) }}
         ></img>
       </div>
       <img height={112} width={133} src={imageUrl} alt="" />
