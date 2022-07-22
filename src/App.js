@@ -12,6 +12,7 @@ function App() {
   const [items, setItems] = React.useState([]); //сюда передаются данные от сервера из axios, далее изменяются items и передаются в компонент <Card />
   const [searchValue, setSearchValue] = React.useState("");
   const [cartItems, setCartItems] = React.useState([]);
+  const [favorites, setFavorites] = React.useState([]);
   const [cartOpened, setcartOpened] = React.useState(false);
   //console.log(cartItems);
 
@@ -22,11 +23,15 @@ function App() {
   //   setSearchValue("");
   // };
   const onAddToCard = (obj) => {
-    setCartItems((lol) => [...lol, obj]);
-    axios.post("https://62d68bb849c87ff2af269c1b.mockapi.io/cart", obj);
+    axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/cart', obj).then(res => setCartItems(prev => [...prev, res.data]))
     console.log(obj);
+  };
 
 
+  const onAddToFavorite = (obj) => {
+    setFavorites((prev) => [...prev, obj]);
+    axios.post("https://62d68bb849c87ff2af269c1b.mockapi.io/favorites", obj);
+    // console.log(obj);
   };
 
   const onDeleteFromCart = (id) => {
@@ -63,7 +68,7 @@ function App() {
       {cartOpened ? ( //Если в useState true, тогда рендерить Drawer, если false, тогда ничего не рендерится
         <Drawer
 
-          id={cartItems.id}
+          //id={cartItems.id}
 
           //В компонент дравер, передается массив CartItems, далее описание в Дравер
           delete={onDeleteFromCart}
@@ -112,7 +117,7 @@ function App() {
                 price={item.price}
                 imageUrl={item.img}
                 onPlusClick={(obj) => onAddToCard(obj)}
-                onFavoriteClick={() => console.log("Нажатие на Favorite")}
+                onFavorite={(obj) => onAddToFavorite(obj)}
               />
             ))}
         </div>

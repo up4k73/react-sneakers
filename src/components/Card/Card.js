@@ -7,6 +7,7 @@ export default function Card({
   imageUrl,
   price,
   title,
+  onFavorite,
 }) {
 
   const [isFavorite, setIsFavorite] = React.useState(false)
@@ -16,6 +17,10 @@ export default function Card({
     setIsAdded(!isAdded);
   };
   // console.log(isAdded);
+  const onClickFavorite = () => {
+    setIsFavorite(!isFavorite)
+    onFavorite({ imageUrl, price, title })
+  }
 
   return (
     <div className={styles.card}>
@@ -23,7 +28,7 @@ export default function Card({
         <img
           src={isFavorite ? "/img/likedHeart.svg" : "/img/heart-unliked.svg"}
           alt="Unliked"
-          onClick={() => { setIsFavorite(!isFavorite) }}
+          onClick={onClickFavorite}
         ></img>
       </div>
       <img height={112} width={133} src={imageUrl} alt="" />
