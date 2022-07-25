@@ -13,15 +13,26 @@ export default function Header(props) {
           </div>
         </div>
         <ul className="d-flex">
-          <li className="mr-30 cu-p">
+
+          <li className="cu-p favoritebutton">
+            <img
+              onClick={props.onClickFavorites}
+              width={18}
+              height={18}
+              src="/img/favoriteCart.svg"
+              alt="Закладки"
+            />
+
+          </li>
+          <li className="mr-10 cu-p">
             <img
               onClick={props.onClickCart}
               width={18}
               height={18}
               src="/img/cart.svg"
-              alt=""
+              alt="Корзина"
             />
-            <span onClick={props.onClickCart}>750000 руб.</span>
+            <span onClick={props.onClickCart}>1000 руб.</span>
           </li>
           <li>
             <img width={18} height={18} src="/img/user.svg" alt="" />

@@ -18,7 +18,7 @@ export default function Cartitem(props) {
         {/* <img src={props.img}></img> */}
         <p className="mb-5">{props.title}</p>
         <b>{props.price} руб.</b>
-        <b>ID ==`{props.id}`` </b>
+        <b>ID =`{props.id}` </b>
         {/* //console.log({props.price}); */}
       </div>
       {console.log(props.id)};

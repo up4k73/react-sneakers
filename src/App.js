@@ -14,6 +14,7 @@ function App() {
   const [cartItems, setCartItems] = React.useState([]);
   const [favorites, setFavorites] = React.useState([]);
   const [cartOpened, setcartOpened] = React.useState(false);
+  const [favoritesOpened, setFavoritesOpened] = React.useState(false);
   //console.log(cartItems);
 
   const onChangeSearchInput = (event) => {
@@ -88,6 +89,10 @@ function App() {
         />
       ) : null}
       <Header
+        onClickFavorites={() => {
+          setFavoritesOpened(true);
+
+        }}
         onClickCart={() => {
           setcartOpened(true);
           //setisCartOpened(true);
