@@ -1,4 +1,5 @@
 import React from "react";
+//import { Link } from "react-router-dom";
 import axios from "axios";
 import Card from "./components/Card/Card";
 import Header from "./components/Header";
@@ -7,6 +8,9 @@ import Drawer from "./components/Drawer/Drawer";
 //import SomethingToTest from "./components/SomethingToTest";
 import CommentSection from "./components/CommentSection/CommentSection";
 import Overlay from "./components/Overlay/Overlay";
+import Favorites from "./components/Pages/Favorites";
+import { Link } from "react-router-dom";
+
 
 function App() {
   const [items, setItems] = React.useState([]); //сюда передаются данные от сервера из axios, далее изменяются items и передаются в компонент <Card />
@@ -88,6 +92,7 @@ function App() {
           }}
         />
       ) : null}
+      {/* <Route path="/test">"Тестовая информация"</Route> */}
       <Header
         onClickFavorites={() => {
           setFavoritesOpened(true);
@@ -98,6 +103,8 @@ function App() {
           //setisCartOpened(true);
         }}
       />
+
+
       <div className="content p-40">
         <Search
           searchValue={searchValue}
@@ -105,8 +112,13 @@ function App() {
           setSearchValue={setSearchValue}
         //clearSearch={clearSearch}
         />
-
+        {/* <Link to="/testing" exact>Home</Link> */}
+        {/* <Switch>
+          <Route path="/test">"Тестовая информация"</Route>
+        </Switch> */}
+        {/* <Link to="/favorites"> фыдлвофыдлво</Link > */}
         <div className="d-flex justify-between flex-wrap">
+
           {items //после того, как реакт понял, что данные изменились, он рендерит их в указанном объекте <Card
             //далее применяется фильтр, который на вход получает данные (item), приводит их к нижнему регистру
             //далее, все, что включает в себя searchValue, в нижнем регистре передается в Card через метод map
@@ -126,10 +138,10 @@ function App() {
               />
             ))}
         </div>
-        <CommentSection />
+        {/* <CommentSection /> */}
         {/* <SomethingToTest /> */}
       </div>
-    </div>
+    </div >
   );
 }
 
