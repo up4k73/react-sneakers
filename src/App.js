@@ -1,15 +1,16 @@
 import React from "react";
-//import { Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import axios from "axios";
-import Card from "./components/Card/Card";
+//import Card from "./components/Card/Card";
 import Header from "./components/Header";
-import Search from "./components/Search";
+//import Search from "./components/Search";
 import Drawer from "./components/Drawer/Drawer";
 //import SomethingToTest from "./components/SomethingToTest";
-import CommentSection from "./components/CommentSection/CommentSection";
+//import CommentSection from "./components/CommentSection/CommentSection";
 import Overlay from "./components/Overlay/Overlay";
-import Favorites from "./components/Pages/Favorites";
-import { Link } from "react-router-dom";
+//import Favorites from "./components/Pages/Favorites";
+//import { Link } from "react-router-dom";
+import Home from "./components/Pages/Home";
 
 
 function App() {
@@ -105,42 +106,16 @@ function App() {
       />
 
 
-      <div className="content p-40">
-        <Search
-          searchValue={searchValue}
-          searchEvent={onChangeSearchInput}
-          setSearchValue={setSearchValue}
-        //clearSearch={clearSearch}
-        />
-        {/* <Link to="/testing" exact>Home</Link> */}
-        {/* <Switch>
-          <Route path="/test">"Тестовая информация"</Route>
-        </Switch> */}
-        {/* <Link to="/favorites"> фыдлвофыдлво</Link > */}
-        <div className="d-flex justify-between flex-wrap">
+      <Home
+        onChangeSearchInput={onChangeSearchInput}
+        items={items}
+        searchValue={searchValue}
+        onAddToCard={onAddToCard}
+        onAddToFavorite={onAddToFavorite}
+        favoritesOpened={favoritesOpened}
+        favorites={favorites}
 
-          {items //после того, как реакт понял, что данные изменились, он рендерит их в указанном объекте <Card
-            //далее применяется фильтр, который на вход получает данные (item), приводит их к нижнему регистру
-            //далее, все, что включает в себя searchValue, в нижнем регистре передается в Card через метод map
-            //searchValue
-            .filter((item) =>
-              item.title.toLowerCase().includes(searchValue.toLowerCase())
-            )
-            .map((item) => (
-              <Card
-
-                key={item.title}
-                title={item.title}
-                price={item.price}
-                imageUrl={item.img}
-                onPlusClick={(obj) => onAddToCard(obj)}
-                onFavorite={(obj) => onAddToFavorite(obj)}
-              />
-            ))}
-        </div>
-        {/* <CommentSection /> */}
-        {/* <SomethingToTest /> */}
-      </div>
+      />
     </div >
   );
 }
