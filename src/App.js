@@ -1,5 +1,10 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import {
+  Router,
+  Routes,
+  Route,
+
+} from "react-router-dom";
 import axios from "axios";
 //import Card from "./components/Card/Card";
 import Header from "./components/Header";
@@ -11,6 +16,7 @@ import Overlay from "./components/Overlay/Overlay";
 //import Favorites from "./components/Pages/Favorites";
 //import { Link } from "react-router-dom";
 import Home from "./components/Pages/Home";
+import Favorites from "./components/Pages/Favorites";
 
 
 function App() {
@@ -67,55 +73,78 @@ function App() {
         setCartItems(res.data);
         // console.log(res.data.id);
       });
+    axios
+      .get("https://62d68bb849c87ff2af269c1b.mockapi.io/favorites")
+      .then((res) => {
 
+        setFavorites(res.data);
+        // console.log(res.data.id);
+      });
   }, []);
   return (
+
     <div className="wrapper clear">
-      {cartOpened ? ( //Если в useState true, тогда рендерить Drawer, если false, тогда ничего не рендерится
-        <Drawer
 
-          //id={cartItems.id}
-
-          //В компонент дравер, передается массив CartItems, далее описание в Дравер
-          delete={onDeleteFromCart}
-          itemsForCart={cartItems} //В Drawer в качестве пропсов передается функция, которая изменяет значение cartOpened
-          onClose={() => {
-            setcartOpened(false);
-            //setisCartOpened(false);
-          }}
-        />
-      ) : null}
-      {cartOpened ? (
-        <Overlay
-          onOverlay={() => {
-            setcartOpened(false);
-            //setisCartOpened(false);
-          }}
-        />
-      ) : null}
-      {/* <Route path="/test">"Тестовая информация"</Route> */}
-      <Header
-        onClickFavorites={() => {
-          setFavoritesOpened(true);
-
-        }}
+      <Header onClickFavorites={() => {
+        setFavoritesOpened(true);
+      }}
         onClickCart={() => {
           setcartOpened(true);
-          //setisCartOpened(true);
-        }}
-      />
+        }} />
+      <Routes>
+
+        <Route path="favorites" element={<Favorites items={favorites} />} >
+        </Route >
 
 
-      <Home
-        onChangeSearchInput={onChangeSearchInput}
-        items={items}
-        searchValue={searchValue}
-        onAddToCard={onAddToCard}
-        onAddToFavorite={onAddToFavorite}
-        favoritesOpened={favoritesOpened}
-        favorites={favorites}
+        <Route path="/" element={<Home
+          onChangeSearchInput={onChangeSearchInput}
+          items={items}
+          searchValue={searchValue}
+          onAddToCard={onAddToCard}
+          onAddToFavorite={onAddToFavorite}
+          favoritesOpened={favoritesOpened}
+          favorites={favorites} />} > </Route >
 
-      />
+        {/* <Route path="/" element={<Favorites />}>
+        </Route> */}
+      </Routes >
+
+      {
+        cartOpened ? ( //Если в useState true, тогда рендерить Drawer, если false, тогда ничего не рендерится
+          <Drawer
+
+            //id={cartItems.id}
+
+            //В компонент дравер, передается массив CartItems, далее описание в Дравер
+            delete={onDeleteFromCart}
+            itemsForCart={cartItems} //В Drawer в качестве пропсов передается функция, которая изменяет значение cartOpened
+            onClose={() => {
+              setcartOpened(false);
+            }
+              //setisCartOpened(false);
+
+            }
+          />
+        ) : null
+      }
+      {
+        cartOpened ? (
+          <Overlay
+            onOverlay={() => {
+              setcartOpened(false);
+
+            }}
+          />
+        ) : null
+      }
+
+
+
+
+
+
+
     </div >
   );
 }
