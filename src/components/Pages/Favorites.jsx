@@ -6,15 +6,16 @@ import { Link } from "react-router-dom";
 export default function Favorites({ items }) {
   return (
     <div className="content p-40">
-      <div className="d-flex align-center justify-between mb-40">
+      {/* <div className="d-flex align-center justify-between mb-40"> */}
+      <div className="mb-40 mr-10 ml-20 d-flex align-center justify-between favHeader">
         <h1>Закладки</h1>
         <Link to="/">
           <button className="greenButton">На главную</button>
         </Link>
       </div>
 
-      <div className="d-flex flex-wrap">
-        {console.log(items)};
+      <div className="d-flex justify-between flex-wrap">
+        {/* {console.log(items)}; */}
         {items.map((item) => (
           <Card
             key={item.title}
@@ -27,5 +28,6 @@ export default function Favorites({ items }) {
         ))}
       </div>
     </div>
+    // </div>
   );
 }

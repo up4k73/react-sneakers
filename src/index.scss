@@ -1,3 +1,5 @@
+/** @format */
+
 body {
   margin: 0;
   font-family: "inter", system-ui;
@@ -151,6 +153,10 @@ h5 {
   &:active {
     background-color: darken($color: #00cec4, $amount: 15%);
   }
+  .favGreenButton {
+    background-color: #b80e0e;
+    color: black;
+  }
 }
 
 .cartItem {
@@ -186,4 +192,12 @@ h5 {
 .items {
   flex: 1;
   overflow: scroll;
+}
+.favHeader {
+  .greenButton {
+    width: 150px;
+    height: 40px;
+    padding: 0 15px;
+    position: relative;
+  }
 }
