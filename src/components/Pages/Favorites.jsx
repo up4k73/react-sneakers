@@ -3,7 +3,7 @@
 import React from "react";
 import Card from "../Card/Card";
 import { Link } from "react-router-dom";
-export default function Favorites({ items }) {
+export default function Favorites({ items, onAddToFavorite, key, index }) {
   return (
     <div className="content p-40">
       {/* <div className="d-flex align-center justify-between mb-40"> */}
@@ -16,14 +16,16 @@ export default function Favorites({ items }) {
 
       <div className="d-flex justify-between flex-wrap">
         {/* {console.log(items)}; */}
-        {items.map((item) => (
+        {items.map((items) => (
           <Card
-            key={item.title}
-            title={item.title}
-            price={item.price}
-            imageUrl={item.imageUrl}
-            // onPlusClick={(obj) => onAddToCard(obj)}
-            // onFavorite={(obj) => onAddToFavorite(obj)}
+            favorited={true}
+            id={items.id}
+            key={items.key}
+            title={items.title}
+            price={items.price}
+            imageUrl={items.imageUrl}
+            onFavorite={onAddToFavorite}
+            //{...items}
           />
         ))}
       </div>

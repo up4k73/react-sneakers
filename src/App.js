@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Router,
+
   Routes,
   Route,
 
@@ -40,11 +40,23 @@ function App() {
   };
 
 
-  const onAddToFavorite = (obj) => {
-    setFavorites((prev) => [...prev, obj]);
-    axios.post("https://62d68bb849c87ff2af269c1b.mockapi.io/favorites", obj);
-    // console.log(obj);
-  };
+  const onAddToFavorite = async (obj) => {
+    console.log(obj);
+    try {
+      if (favorites.find((favObj) => favObj.id === obj.id)) {
+        axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/favorites/${obj.id}`)
+        // setFavorites((prev) => prev.filter((item) => item.id !== obj.id))
+      } else {
+        const { data } = await axios.post(`https://62d68bb849c87ff2af269c1b.mockapi.io/favorites/`, obj);
+        setFavorites((prev) => [...prev, data]);
+      }
+
+    }
+    catch (error) {
+      console.log("Не удалось добавить в Избранное")
+    }
+
+  }
 
   const onDeleteFromCart = (id) => {
     console.log(id)
@@ -93,7 +105,7 @@ function App() {
         }} />
       <Routes>
 
-        <Route path="favorites" element={<Favorites items={favorites} />} >
+        <Route path="favorites" element={<Favorites items={favorites} onAddToFavorite={onAddToFavorite} />} >
         </Route >
 
 

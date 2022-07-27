@@ -35,7 +35,8 @@ export default function Home({
             )
             .map((item) => (
               <Card
-                key={item.title}
+                id={item.id}
+                key={item.key}
                 title={item.title}
                 price={item.price}
                 imageUrl={item.img}
