@@ -18,9 +18,9 @@ export default function Favorites({ items, onAddToFavorite, key, index }) {
         {/* {console.log(items)}; */}
         {items.map((items) => (
           <Card
+            key={items.id}
             favorited={true}
             id={items.id}
-            key={items.key}
             title={items.title}
             price={items.price}
             imageUrl={items.imageUrl}

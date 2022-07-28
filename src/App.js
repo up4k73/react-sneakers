@@ -35,9 +35,16 @@ function App() {
   //   setSearchValue("");
   // };
   const onAddToCard = (obj) => {
-    axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/cart', obj).then(res => setCartItems(prev => [...prev, res.data]))
     console.log(obj);
-  };
+    if (cartItems.find((item) => item.id === obj.id)) {
+      setCartItems((prev) => prev.filter((item) => item.id !== obj.id))
+    } else {
+      axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/cart', obj)
+      setCartItems((prev) => [...prev, obj])
+      // axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/cart', obj).then(res => setCartItems(prev => [...prev, res.data]))
+      // console.log(obj);
+    }
+  }
 
 
   const onAddToFavorite = async (obj) => {
@@ -105,11 +112,12 @@ function App() {
         }} />
       <Routes>
 
-        <Route path="favorites" element={<Favorites items={favorites} onAddToFavorite={onAddToFavorite} />} >
+        <Route path="favorites" element={<Favorites key={favorites.id} items={favorites} onAddToFavorite={onAddToFavorite} />} >
         </Route >
 
 
         <Route path="/" element={<Home
+          //key={items.id}
           onChangeSearchInput={onChangeSearchInput}
           items={items}
           searchValue={searchValue}
@@ -125,6 +133,7 @@ function App() {
       {
         cartOpened ? ( //Если в useState true, тогда рендерить Drawer, если false, тогда ничего не рендерится
           <Drawer
+
 
             //id={cartItems.id}
 

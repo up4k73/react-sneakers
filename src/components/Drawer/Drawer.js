@@ -3,7 +3,7 @@ import Cartitem from "../Cartitem";
 import styles from "./Drawer.module.scss";
 
 export default function Drawer(props) {
-  console.log(props);
+  //console.log(props);
   // const itemsForCartSrv = (obj) => {
   //   axios.get()
   // }
@@ -32,10 +32,12 @@ export default function Drawer(props) {
       </h2>
       <h1>{5 + 5}</h1>
       <div className={styles.items}>
+
         {props.itemsForCart.map((obj) => (
           <Cartitem
+            key={obj.id}
             id={obj.id}
-            key={obj.title}
+
             remove={props.delete}
             title={obj.title}
             imageUrl={obj.imageUrl}
