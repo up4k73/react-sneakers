@@ -13,15 +13,17 @@ export default function Card({
   title,
   onFavorite,
   favorited = false,
-  isLoading = false
+  isLoading,
 
 }) {
+
+
 
   const [isFavorite, setIsFavorite] = React.useState(favorited)
   const [isAdded, setIsAdded] = React.useState(allReadyAdded);
   const onClickPlus = () => {
     onPlusClick({ imageUrl, price, title, id });
-    setIsAdded(!isAdded);
+    setIsAdded(!allReadyAdded);
   };
   // console.log(isAdded);
   const onClickFavorite = () => {
@@ -32,20 +34,21 @@ export default function Card({
   return (
     <div className={styles.card}>
       {
+
         isLoading ? <ContentLoader
           speed={1}
           width={210}
-          height={260}
+          height={230}
           viewBox="0 0 210 260"
           backgroundColor="#ffffff"
           foregroundColor="#e6ebf4"
 
         >
-          <rect x="30" y="37" rx="10" ry="10" width="150" height="91" />
-          <rect x="30" y="143" rx="3" ry="3" width="150" height="15" />
-          <rect x="30" y="162" rx="3" ry="3" width="93" height="15" />
-          <rect x="30" y="199" rx="8" ry="8" width="80" height="24" />
-          <rect x="148" y="191" rx="8" ry="8" width="32" height="32" />
+          <rect x="3" y="27" rx="10" ry="10" width="150" height="91" />
+          <rect x="3" y="133" rx="3" ry="3" width="150" height="15" />
+          <rect x="3" y="152" rx="3" ry="3" width="93" height="15" />
+          <rect x="3" y="189" rx="8" ry="8" width="80" height="24" />
+          <rect x="118" y="181" rx="8" ry="8" width="32" height="32" />
         </ContentLoader> : <> <div className={styles.favorite}>
           <img
             src={isFavorite ? "/img/likedHeart.svg" : "/img/heart-unliked.svg"}
@@ -53,7 +56,7 @@ export default function Card({
             onClick={onClickFavorite}
           ></img>
         </div>
-          <img height={112} width={133} src={imageUrl} alt="" />
+          <img height={135} width='100%' src={imageUrl} alt="" />
           <h5>{title}</h5>
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">

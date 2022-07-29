@@ -11,6 +11,9 @@ export default function Home({
   onAddToCard,
   onAddToFavorite,
   onChangeSearchInput,
+  isLoading,
+  setisLoading,
+  setSearchValue,
 }) {
   return (
     <div>
@@ -18,14 +21,15 @@ export default function Home({
         <Search
           searchValue={searchValue}
           searchEvent={onChangeSearchInput}
+          setSearchValue={setSearchValue}
           //   setSearchValue={setSearchValue}
-          //clearSearch={clearSearch}
         />
         {/* <Link to="/testing" exact>Home</Link> */}
         {/* <Switch>
       <Route path="/test">"Тестовая информация"</Route>
     </Switch> */}
         {/* <Link to="/favorites"> фыдлвофыдлво</Link > */}
+
         <div className="d-flex justify-between flex-wrap">
           {items //после того, как реакт понял, что данные изменились, он рендерит их в указанном объекте <Card
             //далее применяется фильтр, который на вход получает данные (item), приводит их к нижнему регистру
@@ -36,6 +40,8 @@ export default function Home({
             )
             .map((item) => (
               <Card
+                setisLoading={setisLoading}
+                isLoading={isLoading}
                 id={item.id}
                 key={item.id}
                 title={item.title}
@@ -49,8 +55,6 @@ export default function Home({
               />
             ))}
         </div>
-        {/* <CommentSection /> */}
-        {/* <SomethingToTest /> */}
       </div>
     </div>
   );

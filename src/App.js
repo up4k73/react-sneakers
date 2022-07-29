@@ -26,6 +26,7 @@ function App() {
   const [favorites, setFavorites] = React.useState([]);
   const [cartOpened, setcartOpened] = React.useState(false);
   const [favoritesOpened, setFavoritesOpened] = React.useState(false);
+  const [isLoading, setisLoading] = React.useState(true);
   //console.log(cartItems);
 
   const onChangeSearchInput = (event) => {
@@ -35,6 +36,7 @@ function App() {
   //   setSearchValue("");
   // };
   const onAddToCard = (obj) => {
+
     if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
       setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)))
     } else {
@@ -82,27 +84,28 @@ function App() {
   //const [isCartOpened, setisCartOpened] = React.useState(false); //закрытие|открытие Overlay, нужно будет подумать, как реализовать по-другому. Повторяющиеся действия.
   React.useEffect(() => {
     async function fetchData() {
+
+      setisLoading(true)
       const itemsResponse = await axios  //умная библиотека, которая сама распознает тип данных (отправляю запрос, потом через стрелочную функцию передаю результат в setItems, который в свою очередь изменяет стейт в items, реакт понимает, что состояние изменилось и рендерит данные, которые пришли от сервера)
         .get("https://62d68bb849c87ff2af269c1b.mockapi.io/items")
-
-
-
-
-
-
+      setisLoading(true)
       const favResponse = await axios
         .get("https://62d68bb849c87ff2af269c1b.mockapi.io/favorites")
-
+      setisLoading(true)
       const cartResponse = await axios
         .get("https://62d68bb849c87ff2af269c1b.mockapi.io/cart")
+      setisLoading(true)
 
 
-      // console.log(res.data.id);
       setCartItems(cartResponse.data);
+      setisLoading(true)
       setFavorites(favResponse.data);
+
       setItems(itemsResponse.data);
+      setisLoading(false)
     }
     fetchData()
+
   }, []);
   return (
 
@@ -121,18 +124,20 @@ function App() {
 
 
         <Route path="/" element={<Home
-          //key={items.id}
+
+          setisLoading={setisLoading}
+          isLoading={isLoading}
           onChangeSearchInput={onChangeSearchInput}
           cartItems={cartItems}
           items={items}
           searchValue={searchValue}
+          setSearchValue={setSearchValue}
           onAddToCard={onAddToCard}
           onAddToFavorite={onAddToFavorite}
           favoritesOpened={favoritesOpened}
           favorites={favorites} />} > </Route >
 
-        {/* <Route path="/" element={<Favorites />}>
-        </Route> */}
+
       </Routes >
 
       {
