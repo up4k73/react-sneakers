@@ -35,7 +35,7 @@ export default function Drawer(props) {
 
         {props.itemsForCart.map((obj) => (
           <Cartitem
-            key={obj.id}
+            key={obj.key}
             id={obj.id}
 
             remove={props.delete}
