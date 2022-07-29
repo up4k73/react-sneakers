@@ -1,3 +1,5 @@
+/** @format */
+
 .drawer {
   border-radius: 30px 0px 0px 30px;
   overflow: hidden;
@@ -18,5 +20,6 @@
   .items {
     overflow: scroll;
     margin-bottom: 30px;
+    flex-grow: 1;
   }
 }

@@ -3,7 +3,13 @@
 import React from "react";
 import Card from "../Card/Card";
 import { Link } from "react-router-dom";
-export default function Favorites({ items, onAddToFavorite, key, index }) {
+export default function Favorites({
+  items,
+  onAddToFavorite,
+  key,
+  index,
+  onAddToCard,
+}) {
   return (
     <div className="content p-40">
       {/* <div className="d-flex align-center justify-between mb-40"> */}
@@ -19,6 +25,7 @@ export default function Favorites({ items, onAddToFavorite, key, index }) {
         {items.map((items) => (
           <Card
             key={items.id}
+            onPlusClick={(obj) => onAddToCard(obj)}
             favorited={true}
             id={items.id}
             title={items.title}

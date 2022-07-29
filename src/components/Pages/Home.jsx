@@ -6,7 +6,7 @@ import Card from "../Card/Card";
 
 export default function Home({
   items,
-
+  cartItems,
   searchValue,
   onAddToCard,
   onAddToFavorite,
@@ -36,10 +36,14 @@ export default function Home({
             )
             .map((item) => (
               <Card
+                id={item.id}
                 key={item.id}
                 title={item.title}
                 price={item.price}
                 imageUrl={item.img}
+                allReadyAdded={cartItems.some(
+                  (obj) => Number(obj.id) === Number(item.id)
+                )}
                 onPlusClick={(obj) => onAddToCard(obj)}
                 onFavorite={(obj) => onAddToFavorite(obj)}
               />

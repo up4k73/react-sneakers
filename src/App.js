@@ -35,7 +35,6 @@ function App() {
   //   setSearchValue("");
   // };
   const onAddToCard = (obj) => {
-    console.log(obj);
     if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
       setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)))
     } else {
@@ -48,7 +47,7 @@ function App() {
 
 
   const onAddToFavorite = async (obj) => {
-    console.log(obj);
+    // console.log(obj);
     try {
       if (favorites.find((favObj) => favObj.id === obj.id)) {
         axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/favorites/${obj.id}`)
@@ -82,25 +81,28 @@ function App() {
 
   //const [isCartOpened, setisCartOpened] = React.useState(false); //закрытие|открытие Overlay, нужно будет подумать, как реализовать по-другому. Повторяющиеся действия.
   React.useEffect(() => {
-    axios //умная библиотека, которая сама распознает тип данных (отправляю запрос, потом через стрелочную функцию передаю результат в setItems, который в свою очередь изменяет стейт в items, реакт понимает, что состояние изменилось и рендерит данные, которые пришли от сервера)
-      .get("https://62d68bb849c87ff2af269c1b.mockapi.io/items")
-      .then((res) => {
-        setItems(res.data);
-      });
-    axios
-      .get("https://62d68bb849c87ff2af269c1b.mockapi.io/cart")
-      .then((res) => {
+    async function fetchData() {
+      const itemsResponse = await axios  //умная библиотека, которая сама распознает тип данных (отправляю запрос, потом через стрелочную функцию передаю результат в setItems, который в свою очередь изменяет стейт в items, реакт понимает, что состояние изменилось и рендерит данные, которые пришли от сервера)
+        .get("https://62d68bb849c87ff2af269c1b.mockapi.io/items")
 
-        setCartItems(res.data);
-        // console.log(res.data.id);
-      });
-    axios
-      .get("https://62d68bb849c87ff2af269c1b.mockapi.io/favorites")
-      .then((res) => {
 
-        setFavorites(res.data);
-        // console.log(res.data.id);
-      });
+
+
+
+
+      const favResponse = await axios
+        .get("https://62d68bb849c87ff2af269c1b.mockapi.io/favorites")
+
+      const cartResponse = await axios
+        .get("https://62d68bb849c87ff2af269c1b.mockapi.io/cart")
+
+
+      // console.log(res.data.id);
+      setCartItems(cartResponse.data);
+      setFavorites(favResponse.data);
+      setItems(itemsResponse.data);
+    }
+    fetchData()
   }, []);
   return (
 
@@ -114,13 +116,14 @@ function App() {
         }} />
       <Routes>
 
-        <Route path="favorites" element={<Favorites key={favorites.id} items={favorites} onAddToFavorite={onAddToFavorite} />} >
+        <Route path="favorites" element={<Favorites key={favorites.id} onAddToCard={onAddToCard} items={favorites} onAddToFavorite={onAddToFavorite} />} >
         </Route >
 
 
         <Route path="/" element={<Home
           //key={items.id}
           onChangeSearchInput={onChangeSearchInput}
+          cartItems={cartItems}
           items={items}
           searchValue={searchValue}
           onAddToCard={onAddToCard}
