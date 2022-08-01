@@ -3,12 +3,12 @@
 import React from "react";
 import Card from "../Card/Card";
 import { Link } from "react-router-dom";
-export default function Favorites({
-  items,
-  onAddToFavorite,
+import AppContext from "../../context.js";
 
-  onAddToCard,
-}) {
+export default function Favorites({ onAddToCard }) {
+  const { favorites, onAddToFavorite } = React.useContext(AppContext);
+  console.log(favorites);
+
   return (
     <div className="content p-40">
       {/* <div className="d-flex align-center justify-between mb-40"> */}
@@ -20,16 +20,15 @@ export default function Favorites({
       </div>
 
       <div className="d-flex justify-between flex-wrap">
-        {/* {console.log(items)}; */}
-        {items.map((items) => (
+        {favorites.map((item) => (
           <Card
-            key={items.id}
+            key={item.id}
             onPlusClick={(obj) => onAddToCard(obj)}
             favorited={true}
-            id={items.id}
-            title={items.title}
-            price={items.price}
-            img={items.img}
+            id={item.id}
+            title={item.title}
+            price={item.price}
+            img={item.img}
             onFavorite={onAddToFavorite}
             //{...items}
           />

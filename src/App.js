@@ -17,7 +17,7 @@ import Overlay from "./components/Overlay/Overlay";
 //import { Link } from "react-router-dom";
 import Home from "./components/Pages/Home";
 import Favorites from "./components/Pages/Favorites";
-
+import AppContext from "./context";
 
 function App() {
   const [items, setItems] = React.useState([]); //сюда передаются данные от сервера из axios, далее изменяются items и передаются в компонент <Card />
@@ -110,68 +110,70 @@ function App() {
 
   }, []);
   return (
+    <AppContext.Provider value={{ cartItems, favorites, items, onAddToFavorite }}>
 
-    <div className="wrapper clear">
+      < div className="wrapper clear" >
 
-      <Header onClickFavorites={() => {
-        setFavoritesOpened(true);
-      }}
-        onClickCart={() => {
-          setcartOpened(true);
-        }} />
-      <Routes>
+        <Header onClickFavorites={() => {
+          setFavoritesOpened(true);
+        }}
+          onClickCart={() => {
+            setcartOpened(true);
+          }} />
+        <Routes>
 
-        <Route path="favorites" element={<Favorites key={favorites.id} onAddToCard={onAddToCard} items={favorites} onAddToFavorite={onAddToFavorite} />} >
-        </Route >
-
-
-        <Route path="/" element={<Home
-
-          setisLoading={setisLoading}
-          isLoading={isLoading}
-          onChangeSearchInput={onChangeSearchInput}
-          cartItems={cartItems}
-          items={items}
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          onAddToCard={onAddToCard}
-          onAddToFavorite={onAddToFavorite}
-          favoritesOpened={favoritesOpened}
-          favorites={favorites} />} > </Route >
+          <Route path="favorites" element={<Favorites key={favorites.id} onAddToCard={onAddToCard} onAddToFavorite={onAddToFavorite} />} >
+          </Route >
 
 
-      </Routes >
+          <Route path="/" element={<Home
 
-      {
-        cartOpened ? ( //Если в useState true, тогда рендерить Drawer, если false, тогда ничего не рендерится
-          <Drawer
+            setisLoading={setisLoading}
+            isLoading={isLoading}
+            onChangeSearchInput={onChangeSearchInput}
+            cartItems={cartItems}
+            items={items}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            onAddToCard={onAddToCard}
+            onAddToFavorite={onAddToFavorite}
+            favoritesOpened={favoritesOpened}
+            favorites={favorites} />} > </Route >
 
 
-            //id={cartItems.id}
-            key={items.id}
-            //В компонент дравер, передается массив CartItems, далее описание в Дравер
-            delete={onDeleteFromCart}
-            itemsForCart={cartItems} //В Drawer в качестве пропсов передается функция, которая изменяет значение cartOpened
-            onClose={() => {
-              setcartOpened(false);
-            }
-              //setisCartOpened(false);
+        </Routes >
 
-            }
-          />
-        ) : null
-      }
-      {
-        cartOpened ? (
-          <Overlay
-            onOverlay={() => {
-              setcartOpened(false);
+        {
+          cartOpened ? ( //Если в useState true, тогда рендерить Drawer, если false, тогда ничего не рендерится
+            <Drawer
 
-            }}
-          />
-        ) : null
-      }
-    </div >
+
+              //id={cartItems.id}
+              key={items.id}
+              //В компонент дравер, передается массив CartItems, далее описание в Дравер
+              delete={onDeleteFromCart}
+              itemsForCart={cartItems} //В Drawer в качестве пропсов передается функция, которая изменяет значение cartOpened
+              onClose={() => {
+                setcartOpened(false);
+              }
+                //setisCartOpened(false);
+
+              }
+            />
+          ) : null
+        }
+        {
+          cartOpened ? (
+            <Overlay
+              onOverlay={() => {
+                setcartOpened(false);
+
+              }}
+            />
+          ) : null
+        }
+      </div >
+    </AppContext.Provider>
   );
 }
 

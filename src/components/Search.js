@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Search(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <div>
       <div className="mb-40 mr-10 ml-20 d-flex align-center justify-between ">
