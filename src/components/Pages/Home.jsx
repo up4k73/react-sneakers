@@ -29,9 +29,7 @@ export default function Home({
         // title={item.title}
         //price={item.price}
         //imageUrl={item.img}
-        allReadyAdded={cartItems.some(
-          (obj) => Number(obj.id) === Number(item.id)
-        )}
+        // allReadyAdded={getAllReadyAdded(item && items.id)}
         onPlusClick={(obj) => onAddToCard(obj)}
         onFavorite={(obj) => onAddToFavorite(obj)}
       />

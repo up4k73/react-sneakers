@@ -29,6 +29,14 @@ function App() {
   const [isLoading, setisLoading] = React.useState(true);
   //console.log(cartItems);
 
+
+  const getAllReadyAdded = (id) => {
+    return cartItems.some(
+      (obj) => Number(obj.id) === Number(id)
+    )
+  }
+
+
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
@@ -110,7 +118,7 @@ function App() {
 
   }, []);
   return (
-    <AppContext.Provider value={{ cartItems, favorites, items, onAddToFavorite }}>
+    <AppContext.Provider value={{ cartItems, favorites, items, onAddToFavorite, getAllReadyAdded }}>
 
       < div className="wrapper clear" >
 
