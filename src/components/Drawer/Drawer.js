@@ -3,22 +3,7 @@ import Cartitem from "../Cartitem";
 import styles from "./Drawer.module.scss";
 
 export default function Drawer(props) {
-  //console.log(props);
-  // const itemsForCartSrv = (obj) => {
-  //   axios.get()
-  // }
-  // //console.log(props);
-  // const onRemoveFromCartClick = () => {
-  //   console.log("asd");
-  // };
-  //console.log(props);
-  //const [cartItems, setCartItems] = React.useState([]);
 
-  // const onAddToCard = (obj) => {
-  //   setCartItems([...cartItems, obj]);
-  // };
-  //console.log(cartItems);
-  //Сюда прилетает функция, которая изменяет значение cartOpened
   return (
     <div className={styles.drawer}>
       <h2 className="mb-40 mr-10 ml-10 d-flex justify-between">
@@ -35,7 +20,7 @@ export default function Drawer(props) {
 
         {props.itemsForCart.map((obj) => (
           <Cartitem
-            key={obj.key}
+            key={obj.id}
             id={obj.id}
 
             remove={props.delete}

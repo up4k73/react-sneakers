@@ -75,6 +75,8 @@ function App() {
     //setCartItems([...cartItems, id]);
 
   }
+
+
   // const onDeleteFromCart = (obj) => {
   //   setCartItems(cartItems.filter((obj) => obj !== cartItems));
   // };
@@ -85,20 +87,20 @@ function App() {
   React.useEffect(() => {
     async function fetchData() {
 
-      setisLoading(true)
+
       const itemsResponse = await axios  //умная библиотека, которая сама распознает тип данных (отправляю запрос, потом через стрелочную функцию передаю результат в setItems, который в свою очередь изменяет стейт в items, реакт понимает, что состояние изменилось и рендерит данные, которые пришли от сервера)
         .get("https://62d68bb849c87ff2af269c1b.mockapi.io/items")
-      setisLoading(true)
+
       const favResponse = await axios
         .get("https://62d68bb849c87ff2af269c1b.mockapi.io/favorites")
-      setisLoading(true)
+
       const cartResponse = await axios
         .get("https://62d68bb849c87ff2af269c1b.mockapi.io/cart")
-      setisLoading(true)
+
 
 
       setCartItems(cartResponse.data);
-      setisLoading(true)
+
       setFavorites(favResponse.data);
 
       setItems(itemsResponse.data);
@@ -146,7 +148,7 @@ function App() {
 
 
             //id={cartItems.id}
-
+            key={items.id}
             //В компонент дравер, передается массив CartItems, далее описание в Дравер
             delete={onDeleteFromCart}
             itemsForCart={cartItems} //В Drawer в качестве пропсов передается функция, которая изменяет значение cartOpened
@@ -169,13 +171,6 @@ function App() {
           />
         ) : null
       }
-
-
-
-
-
-
-
     </div >
   );
 }
