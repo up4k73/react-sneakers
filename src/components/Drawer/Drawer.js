@@ -25,7 +25,7 @@ export default function Drawer(props) {
 
             remove={props.delete}
             title={obj.title}
-            imageUrl={obj.imageUrl}
+            imageUrl={obj.img}
             price={obj.price}
 
           />

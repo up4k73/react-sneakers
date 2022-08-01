@@ -4,11 +4,12 @@ import styles from "./Card.module.scss";
 import ContentLoader from "react-content-loader"
 
 export default function Card({
+
   allReadyAdded = false,
 
   id,
   onPlusClick,
-  imageUrl,
+  img,
   price,
   title,
   onFavorite,
@@ -22,18 +23,19 @@ export default function Card({
   const [isFavorite, setIsFavorite] = React.useState(favorited)
   const [isAdded, setIsAdded] = React.useState(allReadyAdded);
   const onClickPlus = () => {
-    onPlusClick({ imageUrl, price, title, id });
+    onPlusClick({ img, price, title, id });
     setIsAdded(!allReadyAdded);
   };
   // console.log(isAdded);
   const onClickFavorite = () => {
     setIsFavorite(!isFavorite)
-    onFavorite({ id, imageUrl, price, title })
+    onFavorite({ id, img, price, title })
   }
 
   return (
     <div className={styles.card}>
       {
+
 
         isLoading ? <ContentLoader
           speed={1}
@@ -56,7 +58,7 @@ export default function Card({
             onClick={onClickFavorite}
           ></img>
         </div>
-          <img height={135} width='100%' src={imageUrl} alt="" />
+          <img height={135} width='100%' src={img} alt="" />
           <h5>{title}</h5>
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">

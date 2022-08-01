@@ -29,7 +29,7 @@ export default function Favorites({
             id={items.id}
             title={items.title}
             price={items.price}
-            imageUrl={items.imageUrl}
+            img={items.img}
             onFavorite={onAddToFavorite}
             //{...items}
           />

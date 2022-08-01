@@ -87,7 +87,7 @@ function App() {
   React.useEffect(() => {
     async function fetchData() {
 
-
+      setisLoading(true)
       const itemsResponse = await axios  //умная библиотека, которая сама распознает тип данных (отправляю запрос, потом через стрелочную функцию передаю результат в setItems, который в свою очередь изменяет стейт в items, реакт понимает, что состояние изменилось и рендерит данные, которые пришли от сервера)
         .get("https://62d68bb849c87ff2af269c1b.mockapi.io/items")
 
@@ -97,14 +97,14 @@ function App() {
       const cartResponse = await axios
         .get("https://62d68bb849c87ff2af269c1b.mockapi.io/cart")
 
-
+      setisLoading(false)
 
       setCartItems(cartResponse.data);
 
       setFavorites(favResponse.data);
 
       setItems(itemsResponse.data);
-      setisLoading(false)
+
     }
     fetchData()
 

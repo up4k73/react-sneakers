@@ -15,6 +15,29 @@ export default function Home({
   setisLoading,
   setSearchValue,
 }) {
+  const renderItems = () => {
+    const filteredItems = items.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return (isLoading ? [...Array(10)] : filteredItems).map((item, index) => (
+      <Card
+        {...item}
+        setisLoading={setisLoading}
+        isLoading={isLoading}
+        //id={item.id}
+        key={index}
+        // title={item.title}
+        //price={item.price}
+        //imageUrl={item.img}
+        allReadyAdded={cartItems.some(
+          (obj) => Number(obj.id) === Number(item.id)
+        )}
+        onPlusClick={(obj) => onAddToCard(obj)}
+        onFavorite={(obj) => onAddToFavorite(obj)}
+      />
+    ));
+  };
+
   return (
     <div>
       <div className="content p-40">
@@ -23,28 +46,7 @@ export default function Home({
           searchEvent={onChangeSearchInput}
           setSearchValue={setSearchValue}
         />
-        <div className="d-flex justify-between flex-wrap">
-          {items
-            .filter((item) =>
-              item.title.toLowerCase().includes(searchValue.toLowerCase())
-            )
-            .map((item) => (
-              <Card
-                setisLoading={setisLoading}
-                isLoading={isLoading}
-                id={item.id}
-                key={item.id}
-                title={item.title}
-                price={item.price}
-                imageUrl={item.img}
-                allReadyAdded={cartItems.some(
-                  (obj) => Number(obj.id) === Number(item.id)
-                )}
-                onPlusClick={(obj) => onAddToCard(obj)}
-                onFavorite={(obj) => onAddToFavorite(obj)}
-              />
-            ))}
-        </div>
+        <div className="d-flex justify-between flex-wrap">{renderItems()}</div>
       </div>
     </div>
   );
