@@ -128,7 +128,23 @@ h5 {
     }
     img {
       position: absolute;
-      right: 30px;
+      right: 50px;
+      top: 20px;
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+  .greenEmptyButton {
+    position: relative;
+    &:hover {
+      img {
+        transform: translateX(5px);
+        transition-delay: 0.1s;
+        transform: rotate(180deg);
+      }
+    }
+    img {
+      position: absolute;
+      left: 50px;
       top: 20px;
       transition: transform 0.2s ease-in-out;
     }
@@ -154,6 +170,10 @@ h5 {
     background-color: darken($color: #00cec4, $amount: 15%);
   }
   .favGreenButton {
+    background-color: #b80e0e;
+    color: black;
+  }
+  .greenEmptyButton {
     background-color: #b80e0e;
     color: black;
   }

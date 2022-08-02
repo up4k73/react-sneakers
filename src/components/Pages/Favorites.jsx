@@ -5,8 +5,9 @@ import Card from "../Card/Card";
 import { Link } from "react-router-dom";
 import AppContext from "../../context.js";
 
-export default function Favorites({ onAddToCard }) {
-  const { favorites, onAddToFavorite } = React.useContext(AppContext);
+export default function Favorites() {
+  const { favorites, onAddToFavorite, onAddToCard } =
+    React.useContext(AppContext);
   console.log(favorites);
 
   return (

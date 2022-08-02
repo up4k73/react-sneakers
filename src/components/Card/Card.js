@@ -6,7 +6,7 @@ import AppContext from "../../context";
 
 export default function Card({
 
-  allReadyAdded = false,
+
 
   id,
   onPlusClick,
