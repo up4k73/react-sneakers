@@ -119,7 +119,7 @@ function App() {
   }, []);
   return (
     <AppContext.Provider value=
-      {{ cartItems, favorites, items, onAddToFavorite, getAllReadyAdded, onAddToCard, setcartOpened }}>
+      {{ cartItems, setCartItems, favorites, items, onAddToFavorite, getAllReadyAdded, onAddToCard, setcartOpened }}>
 
       < div className="wrapper clear" >
 

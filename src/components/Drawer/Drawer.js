@@ -2,12 +2,15 @@ import React from "react";
 import Cartitem from "../Cartitem";
 import styles from "./Drawer.module.scss";
 import Info from "../Info";
-import AppContext from "../../context";
+import { useCart } from "../Hooks/useCart";
+
 
 export default function Drawer(props) {
-  const { cartItems } = React.useContext(AppContext)
 
-  const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0)
+  const { cartItems, setCartItems, totalPrice } = useCart()
+
+
+
 
   if (props.itemsForCart.length > 0) {
     return (
