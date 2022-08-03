@@ -5,9 +5,21 @@ import Info from "../Info";
 import { useCart } from "../Hooks/useCart";
 
 
+
 export default function Drawer(props) {
 
-  const { cartItems, setCartItems, totalPrice } = useCart()
+  const [isOrderCompleted, setIsOrderCompleted] = React.useState(false)
+
+
+  const { setCartItems } = useCart()
+
+
+  const onClickOrder = () => {
+    setIsOrderCompleted(true)
+    setCartItems([])
+  }
+  console.log(isOrderCompleted);
+  const { totalPrice } = useCart()
 
 
 
@@ -54,7 +66,7 @@ export default function Drawer(props) {
               <b>{(totalPrice / 100 * 5).toFixed(2)} руб.</b>
             </li>
           </ul>
-          <button className="greenButton">
+          <button onClick={onClickOrder} className="greenButton">
             Оформить заказ
             <img src="/img/arrow.svg" alt="Arrow" />
           </button>
@@ -67,7 +79,9 @@ export default function Drawer(props) {
       <div className="cartTotalBlock">
         <div className={styles.drawer}>
 
-          <Info title="Корзина пустая" description="Добавьте хотя бы одну пару кроссовок" image="/img/empty-card.svg" />
+          <Info title={isOrderCompleted ? "Спасибо за заказ" : "Корзина пустая"}
+            description={isOrderCompleted ? "Ваш заказ #18 скоро будет передан курьерской доставке" : "Добавьте хотя бы одну пару кроссовок"}
+            image={isOrderCompleted ? "/img/complete-order.svg" : "/img/empty-card.svg"} />
         </div>
       </div >)
 

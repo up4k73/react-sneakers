@@ -29,7 +29,7 @@ const Info = ({ title, description, image }) => {
         />
 
         <h2>{title}</h2>
-        <p className="opacity-6">{description}</p>
+        <p className="cartDescription opacity-6">{description}</p>
         <button
           onClick={() => setcartOpened(false)}
           className="greenEmptyButton greenButton"

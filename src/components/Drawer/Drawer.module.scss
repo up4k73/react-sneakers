@@ -14,12 +14,25 @@
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   padding: 30px;
   z-index: 2;
-  h2 {
-    margin: 0;
-  }
+
+  // h2 {
+  //   margin: 100000;
+  // }
   .items {
-    overflow: scroll;
+    overflow: auto;
     margin-bottom: 30px;
     flex-grow: 1;
   }
+  .cartTotalBlock {
+    .cartDescription {
+      background-color: red;
+      p {
+        text-align: center;
+        border-color: black;
+      }
+    }
+  }
+}
+p.cartDescription.opacity-6.text-center {
+  background-color: red;
 }
