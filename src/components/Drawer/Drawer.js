@@ -2,6 +2,7 @@ import React from "react";
 import Cartitem from "../Cartitem";
 import styles from "./Drawer.module.scss";
 import Info from "../Info";
+import axios from "axios";
 import { useCart } from "../Hooks/useCart";
 
 
@@ -11,12 +12,29 @@ export default function Drawer(props) {
   const [isOrderCompleted, setIsOrderCompleted] = React.useState(false)
 
 
-  const { setCartItems } = useCart()
+  const { setCartItems, cartItems } = useCart()
+  const [orderId, setOrderId] = React.useState(null)
+  const [isLoading, setIsLoading] = React.useState(false)
 
 
-  const onClickOrder = () => {
-    setIsOrderCompleted(true)
-    setCartItems([])
+  const onClickOrder = async () => {
+    try {
+      setIsLoading(true)
+      const { data } = await axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/orders', { items: cartItems })
+      setOrderId(data.id)
+      setIsOrderCompleted(true)
+      setCartItems([])
+
+      for (let i = 0; i < cartItems.length; i++) {
+        const item = cartItems[i];
+        axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/cart/` + item.id)
+
+      }
+
+    } catch (error) {
+      alert('Не удалось создать заказ')
+    }
+    setIsLoading(false)
   }
   console.log(isOrderCompleted);
   const { totalPrice } = useCart()
@@ -66,7 +84,7 @@ export default function Drawer(props) {
               <b>{(totalPrice / 100 * 5).toFixed(2)} руб.</b>
             </li>
           </ul>
-          <button onClick={onClickOrder} className="greenButton">
+          <button disabled={isLoading} onClick={onClickOrder} className="greenButton">
             Оформить заказ
             <img src="/img/arrow.svg" alt="Arrow" />
           </button>
@@ -80,7 +98,7 @@ export default function Drawer(props) {
         <div className={styles.drawer}>
 
           <Info title={isOrderCompleted ? "Спасибо за заказ" : "Корзина пустая"}
-            description={isOrderCompleted ? "Ваш заказ #18 скоро будет передан курьерской доставке" : "Добавьте хотя бы одну пару кроссовок"}
+            description={isOrderCompleted ? `Ваш заказ №${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кроссовок"}
             image={isOrderCompleted ? "/img/complete-order.svg" : "/img/empty-card.svg"} />
         </div>
       </div >)
