@@ -17,6 +17,7 @@ import Overlay from "./components/Overlay/Overlay";
 //import { Link } from "react-router-dom";
 import Home from "./components/Pages/Home";
 import Favorites from "./components/Pages/Favorites";
+import Orders from "./components/Pages/Orders";
 import AppContext from "./context";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
   const [cartItems, setCartItems] = React.useState([]);
   const [favorites, setFavorites] = React.useState([]);
   const [cartOpened, setcartOpened] = React.useState(false);
+  const [ordersOpened, setOrdersOpened] = React.useState(false);
   const [favoritesOpened, setFavoritesOpened] = React.useState(false);
   const [isLoading, setisLoading] = React.useState(true);
   //console.log(cartItems);
@@ -77,8 +79,13 @@ function App() {
 
 
   const onDeleteFromCart = (id) => {
-    console.log(id)
     axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/cart/${id}`)
+    setCartItems((prev) => prev.filter(item => item.id !== id));
+    //setCartItems([...cartItems, id]);
+
+  }
+  const onDeleteFromOrders = (id) => {
+    axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/orders/${id}`)
     setCartItems((prev) => prev.filter(item => item.id !== id));
     //setCartItems([...cartItems, id]);
 
@@ -119,7 +126,7 @@ function App() {
   }, []);
   return (
     <AppContext.Provider value=
-      {{ cartItems, setCartItems, favorites, items, onAddToFavorite, getAllReadyAdded, onAddToCard, setcartOpened }}>
+      {{ cartItems, setCartItems, onDeleteFromOrders, onAddToCard, favorites, items, onAddToFavorite, getAllReadyAdded, setcartOpened, setOrdersOpened, }}>
 
       < div className="wrapper clear" >
 
@@ -128,8 +135,13 @@ function App() {
         }}
           onClickCart={() => {
             setcartOpened(true);
+          }}
+          onClickOrders={() => {
+            setOrdersOpened(true);
           }} />
         <Routes>
+          <Route path="orders" element={<Orders />} >
+          </Route >
 
           <Route path="favorites" element={<Favorites key={favorites.id} />} >
           </Route >
@@ -179,6 +191,11 @@ function App() {
 
               }}
             />
+          ) : null
+        }
+        {
+          ordersOpened ? (
+            <Orders />
           ) : null
         }
       </div >

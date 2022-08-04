@@ -178,6 +178,33 @@ h5 {
     color: black;
   }
 }
+.redButton {
+  width: 198px;
+  height: 42px;
+
+  background: #ea8b73;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 0;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s ease-in-out;
+  &:hover {
+    background-color: lighten($color: #f0482a, $amount: 5%);
+  }
+  &:active {
+    background-color: darken($color: #00cec4, $amount: 15%);
+  }
+  .favGreenButton {
+    background-color: #b80e0e;
+    color: black;
+  }
+  .greenEmptyButton {
+    background-color: #b80e0e;
+    color: black;
+  }
+}
 
 .cartItem {
   border: 1px solid #f3f3f3;

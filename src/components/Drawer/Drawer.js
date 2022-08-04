@@ -12,7 +12,7 @@ export default function Drawer(props) {
   const [isOrderCompleted, setIsOrderCompleted] = React.useState(false)
 
 
-  const { setCartItems, cartItems } = useCart()
+  const { setCartItems, cartItems, totalPrice } = useCart()
   const [orderId, setOrderId] = React.useState(null)
   const [isLoading, setIsLoading] = React.useState(false)
 
@@ -36,8 +36,8 @@ export default function Drawer(props) {
     }
     setIsLoading(false)
   }
-  console.log(isOrderCompleted);
-  const { totalPrice } = useCart()
+
+
 
 
 

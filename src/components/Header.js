@@ -51,9 +51,11 @@ export default function Header(props) {
 
             <span onClick={props.onClickCart}>{totalPrice} руб.</span>
           </li>
-          <li>
-            <img width={18} height={18} src="/img/user.svg" alt="" />
-          </li>
+          <Link to="/orders">
+            <li>
+              <img width={18} height={18} src="/img/user.svg" alt="Orders" />
+            </li>
+          </Link>
         </ul>
       </header>
     </div>
