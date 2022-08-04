@@ -36,6 +36,7 @@ export default function Orders() {
         );
       }
       setOrders((prev) => prev.filter((item) => items.id !== obj.id));
+      alert("Ваши заказы удалены");
     })();
   };
 
