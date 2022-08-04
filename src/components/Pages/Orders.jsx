@@ -25,12 +25,18 @@ export default function Orders() {
   }, []);
 
   const onDeleteOrders = (obj) => {
-    // orders.find((favObj) => Number(favObj.id) === Number(obj.id));
-    setOrders((prev) => prev.filter((item) => items.id !== obj.id));
-    axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/orders/${1}`);
-    // setOrders((prev) =>
-    //   prev.filter((item) => Number(item.id) !== Number(obj.id))
-    // );
+    (async () => {
+      const { data } = await axios.get(
+        "https://62d68bb849c87ff2af269c1b.mockapi.io/orders"
+      );
+      for (let i = 0; i < data.length; i++) {
+        const item = data[i];
+        axios.delete(
+          `https://62d68bb849c87ff2af269c1b.mockapi.io/orders/` + item.id
+        );
+      }
+      setOrders((prev) => prev.filter((item) => items.id !== obj.id));
+    })();
   };
 
   return (
