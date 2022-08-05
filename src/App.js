@@ -6,15 +6,9 @@ import {
 
 } from "react-router-dom";
 import axios from "axios";
-//import Card from "./components/Card/Card";
 import Header from "./components/Header";
-//import Search from "./components/Search";
 import Drawer from "./components/Drawer/Drawer";
-//import SomethingToTest from "./components/SomethingToTest";
-//import CommentSection from "./components/CommentSection/CommentSection";
 import Overlay from "./components/Overlay/Overlay";
-//import Favorites from "./components/Pages/Favorites";
-//import { Link } from "react-router-dom";
 import Home from "./components/Pages/Home";
 import Favorites from "./components/Pages/Favorites";
 import Orders from "./components/Pages/Orders";
@@ -29,12 +23,12 @@ function App() {
   const [ordersOpened, setOrdersOpened] = React.useState(false);
   const [favoritesOpened, setFavoritesOpened] = React.useState(false);
   const [isLoading, setisLoading] = React.useState(true);
-  //console.log(cartItems);
 
 
   const getAllReadyAdded = (id) => {
+    console.log(cartItems, 222)
     return cartItems.some(
-      (obj) => Number(obj.id) === Number(id)
+      (obj) => Number(obj.parentId) === Number(id)
     )
   }
 
@@ -46,15 +40,19 @@ function App() {
   //   setSearchValue("");
   // };
   const onAddToCard = (obj) => {
+    (async (item) => {
+      if (cartItems.find((item) => Number(obj.id) === Number(item.parentId))) {
+        axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/cart/${obj.parentId}`)
+        setCartItems((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)))
 
-    if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-      setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)))
-    } else {
-      axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/cart', obj)
-      setCartItems((prev) => [...prev, obj])
-      // axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/cart', obj).then(res => setCartItems(prev => [...prev, res.data]))
-      // console.log(obj);
-    }
+      } else {
+        axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/cart', obj)
+        setCartItems((prev) => [...prev, obj])
+      }
+
+    })()
+
+
   }
 
 
@@ -80,7 +78,7 @@ function App() {
 
   const onDeleteFromCart = (id) => {
     axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/cart/${id}`)
-    setCartItems((prev) => prev.filter(item => item.id !== id));
+    setCartItems((prev) => prev.filter(item => Number(item.id) !== Number(id)));
     //setCartItems([...cartItems, id]);
 
   }
@@ -165,34 +163,30 @@ function App() {
         </Routes >
 
         {
-          cartOpened ? ( //Если в useState true, тогда рендерить Drawer, если false, тогда ничего не рендерится
-            <Drawer
-
-
-              //id={cartItems.id}
-              key={items.id}
-              //В компонент дравер, передается массив CartItems, далее описание в Дравер
-              delete={onDeleteFromCart}
-              itemsForCart={cartItems} //В Drawer в качестве пропсов передается функция, которая изменяет значение cartOpened
-              onClose={() => {
-                setcartOpened(false);
-              }
-                //setisCartOpened(false);
-
-              }
-            />
-          ) : null
-        }
-        {
           cartOpened ? (
-            <Overlay
-              onOverlay={() => {
-                setcartOpened(false);
+            <div>
+              <Drawer
 
-              }}
-            />
+                key={items.id}
+                //В компонент дравер, передается массив CartItems, далее описание в Дравер
+                delete={onDeleteFromCart}
+                itemsForCart={cartItems} //В Drawer в качестве пропсов передается функция, которая изменяет значение cartOpened
+                onClose={() => {
+                  setcartOpened(false);
+                }
+                }
+              />
+
+              <Overlay
+                onOverlay={() => {
+                  setcartOpened(false);
+
+                }}
+              />
+            </div>
           ) : null
         }
+
         {
           ordersOpened ? (
             <Orders />
