@@ -8,7 +8,7 @@ import AppContext from "../../context";
 
 export default function Orders() {
   const { onAddToFavorite, onAddToCard, items } = React.useContext(AppContext);
-
+  // 😘😘🤣
   const [isLoading, setisLoading] = React.useState(true);
   const [orders, setOrders] = React.useState([]);
   React.useEffect(() => {
