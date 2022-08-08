@@ -39,7 +39,7 @@ function App() {
   // const clearSearch = () => {
   //   setSearchValue("");
   // };
-  const onAddToCard = (obj) => {
+  const onAddToCard = (obj) => { /////ALARM!!!!
     (async (item) => {
       if (cartItems.find((item) => Number(obj.id) === Number(item.parentId))) {
         axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/cart/${obj.parentId}`)

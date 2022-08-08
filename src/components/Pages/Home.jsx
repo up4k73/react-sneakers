@@ -6,7 +6,7 @@ import Card from "../Card/Card";
 
 export default function Home({
   items,
-  cartItems,
+
   searchValue,
   onAddToCard,
   onAddToFavorite,

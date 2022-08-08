@@ -11,7 +11,7 @@ export default function Drawer(props) {
 
   const [isOrderCompleted, setIsOrderCompleted] = React.useState(false)
 
-  const opened = props.opened
+
   const { setCartItems, cartItems, totalPrice } = useCart()
   const [orderId, setOrderId] = React.useState(null)
   const [isLoading, setIsLoading] = React.useState(false)
