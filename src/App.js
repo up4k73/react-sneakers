@@ -39,23 +39,38 @@ function App() {
   // const clearSearch = () => {
   //   setSearchValue("");
   // };
-  const onAddToCard = (obj) => { /////ALARM!!!!
-    (async (item) => {
-      if (cartItems.find((item) => Number(obj.id) === Number(item.parentId))) {
-        axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/cart/${obj.parentId}`)
+  const onAddToCard = async (obj) => { /////ALARM!!!!
+    try {
+      const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id))
+      if (findItem) {
         setCartItems((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)))
-
+        await axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/cart/${findItem.id}`)
       } else {
-        axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/cart', obj)
-        setCartItems((prev) => [...prev, obj])
-      }
+        const { data } = await axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/cart', obj)
+        setCartItems((prev) => [...prev, data])
 
-    })()
+      }
+    } catch (error) {
+      alert('Ошибка добавления товара в корзину')
+      console.error(error);
+    }
 
 
   }
 
 
+
+  // (async (item) => {
+  //   if (cartItems.find((item) => Number(obj.id) === Number(item.parentId))) {
+  //     axios.delete(`https://62d68bb849c87ff2af269c1b.mockapi.io/cart/${obj.parentId}`)
+  //     setCartItems((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)))
+
+  //   } else {
+  //     axios.post('https://62d68bb849c87ff2af269c1b.mockapi.io/cart', obj)
+  //     setCartItems((prev) => [...prev, obj])
+  //   }
+
+  // })()
   const onAddToFavorite = async (obj) => {
     // console.log(obj);
     try {
