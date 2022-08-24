@@ -828,10 +828,86 @@
 
 // }
 
-var capitals = function (word) {
-    let arr = []
-    word.split('').map((el, index) => el === el.toUpperCase() ? arr.push(index) : null)
-    return arr
-};
+// var capitals = function (word) {
+//     let arr = []
+//     word.split('').map((el, index) => el === el.toUpperCase() ? arr.push(index) : null)
+//     return arr
+// };
 
-console.log(capitals("COde"));
+// function minValue(values) {
+//     let arr = []
+//     values.split("").map((el, index) => el === el[index - 1] ? arr.push(el) : null)
+//     // arr.push(values.toLowerCase().split('').filter((item, index) => values.indexOf(item) !== index))
+//     return arr.flat()
+// }
+
+// function duplicateCount(text) {
+//     let count = 0
+//     let a = {}
+
+//     for (let i of text) {
+//         i = i.toLowerCase()
+//         if (!a[i]) {
+//             a[i] = 1
+//         } else {
+//             a[i]++
+//         }
+//     }
+//     for (let i in a) {
+//         if (a[i] > 1) {
+//             count++
+//         }
+//     }
+//     return count
+// }
+
+
+function isIsogram(str) {
+    let count = 0
+    let a = {}
+    for (let i of str) {
+        i = i.toLowerCase()
+        if (!a[i]) {
+            a[i] = 1
+        } else {
+            a[i]++
+        }
+    }
+    for (let i in a) {
+        if (a[i] > 1) {
+            count++
+        }
+    }
+    return count > 0 ? false : true
+}
+
+
+console.log(isIsogram('mOose'));
+
+var number = function (busStops) {
+    let whoInTheBus = busStops.reduce((prev, curr) => prev + curr[0], 0)
+    let getOutFromTheBus = busStops.reduce((prev, curr) => prev + curr[1], 0)
+    return whoInTheBus - getOutFromTheBus
+
+}
+
+
+// console.log(number([[10, 0], [3, 5], [5, 8]]));
+
+// function toBinary(n) {
+//     return parseInt(String(n), 2);
+// }
+// console.log(toBinary(22));
+
+// function saleHotdogs(n) {
+//     return n < 5 ? n * 100 : n >= 10 ? n * 90 : n * 95
+
+// }
+
+// console.log(saleHotdogs(11));
+
+function calculateAge(a, b) {
+    let age = b - a
+    return age > 0 ? `You are ${age} years old` : 
+   
+}
